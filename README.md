@@ -1,134 +1,177 @@
-WebRise
-WebRise — это реактивное веб-приложение на основе Spring WebFlux и R2DBC, предоставляющее API для управления пользователями и их подписками. Приложение позволяет создавать, обновлять, удалять пользователей, добавлять и удалять подписки, а также получать список самых популярных сервисов подписок. Проект использует PostgreSQL для хранения данных и разворачивается в Docker для упрощения разработки и деплоя.
-Основные возможности
+# WebRise
 
-Управление пользователями: Создание, получение, обновление и удаление пользователей.
-Управление подписками: Добавление, получение и удаление подписок для пользователей.
-Топ подписок: Получение списка самых популярных сервисов подписок (топ-5).
-Реактивное API: Использует Spring WebFlux для асинхронной обработки запросов.
-Документация API: Интеграция с Swagger UI для интерактивной документации.
-Контейнеризация: Разворачивается с помощью Docker и Docker Compose.
+**WebRise** — реактивное веб-приложение на основе Spring WebFlux и R2DBC, предоставляющее API для управления пользователями и их подписками.
 
-Технологии
+## Основные возможности
 
-Spring Boot: 3.4.5
-Spring WebFlux: Для реактивного веб-API
-Spring Data R2DBC: Для реактивного доступа к PostgreSQL
-PostgreSQL: 17.5 (база данных)
-R2DBC PostgreSQL Driver: Для реактивного взаимодействия с PostgreSQL
-Springdoc OpenAPI: Для генерации документации API (Swagger UI)
-Lombok: Для упрощения кода
-Docker & Docker Compose: Для контейнеризации
-Maven: Для управления зависимостями
-Java: 17
+* **Управление пользователями:**
 
-Структура проекта
+    * Создание, получение, обновление и удаление пользователей.
+* **Управление подписками:**
+
+    * Добавление, получение и удаление подписок для пользователей.
+* **Топ подписок:**
+
+    * Получение списка самых популярных сервисов подписок (топ-5).
+* **Реактивное API:**
+
+    * Использует Spring WebFlux для асинхронной обработки запросов.
+* **Документация API:**
+
+    * Интеграция с Swagger UI для интерактивной документации.
+* **Контейнеризация:**
+
+    * Разворачивается с помощью Docker и Docker Compose.
+
+## Технологии
+
+* **Spring Boot:** 3.4.5
+* **Spring WebFlux:** Для реактивного веб-API
+* **Spring Data R2DBC:** Для реактивного доступа к PostgreSQL
+* **PostgreSQL:** 17.5
+* **R2DBC PostgreSQL Driver:** Для реактивного взаимодействия с PostgreSQL
+* **Springdoc OpenAPI:** Для генерации документации API (Swagger UI)
+* **Lombok:** Для упрощения кода
+* **Docker & Docker Compose:** Для контейнеризации
+* **Maven:** Для управления зависимостями
+* **Java:** 17
+
+## Структура проекта
+
+```
 webRise/
 ├── src/
 │   ├── main/
 │   │   ├── java/ru/dovakun/webRise/
-│   │   │   ├── controller/         # Контроллеры WebFlux (UserController, SubscriptionController, TopSubscriptionsController)
-│   │   │   ├── dto/               # DTO (UserDTO, SubscriptionDTO, TopSubscriptionDTO)
-│   │   │   ├── entity/            # Сущности (User, Subscription)
-│   │   │   ├── repository/        # Репозитории R2DBC (UserRepository, SubscriptionRepository)
-│   │   │   ├── service/           # Сервисы (UserService, SubscriptionService)
-│   │   │   └── WebRiseApplication.java # Главный класс приложения
+│   │   │   ├── controller/              # Контроллеры (UserController, SubscriptionController, TopSubscriptionsController)
+│   │   │   ├── dto/                     # DTO (UserDTO, SubscriptionDTO, TopSubscriptionDTO)
+│   │   │   ├── entity/                  # Сущности (User, Subscription)
+│   │   │   ├── repository/              # Репозитории R2DBC (UserRepository, SubscriptionRepository)
+│   │   │   ├── service/                 # Сервисы (UserService, SubscriptionService)
+│   │   │   └── WebRiseApplication.java  # Главный класс приложения
 │   │   └── resources/
-│   │       ├── application.yml    # Конфигурация приложения
-│   │       └── schema.sql         # Схема базы данных
-├── Dockerfile                     # Dockerfile для сборки приложения
-├── docker-compose.yml             # Конфигурация Docker Compose
-├── pom.xml                        # Зависимости Maven
-└── README.md                      # Документация проекта
+│   │       ├── application.yml          # Конфигурация приложения
+│   │       └── schema.sql               # Схема базы данных
+├── Dockerfile                           # Dockerfile для сборки приложения
+├── docker-compose.yml                   # Конфигурация Docker Compose
+├── pom.xml                              # Зависимости Maven
+└── README.md                            # Документация проекта
+```
 
-Установка и запуск
-Требования
+## Установка и запуск
 
-Docker и Docker Compose
-Java 17 (для локальной разработки)
-Maven (для локальной сборки)
+### Требования
 
-Шаги для запуска
+* Docker и Docker Compose
+* Java 17 (для локальной разработки)
+* Maven (для локальной сборки)
 
-Клонируйте репозиторий:
+### Шаги для запуска
 
-[git clone https://github.com/<your-username>/webRise.git](https://github.com/dima1212qqq/webRise.git)
+1️⃣ Клонируйте репозиторий:
+
+```bash
+git clone https://github.com/<your-account>/webRise.git
 cd webRise
+```
 
+2️⃣ Запустите приложение с Docker Compose:
 
-Запустите приложение с Docker Compose:
-
+```bash
 docker-compose up --build
+```
 
 Это создаст и запустит два контейнера:
 
-web-rise: Приложение Spring Boot на порту 8080.
-postgres: База данных PostgreSQL на порту 5432.
+* **web-rise:** Приложение Spring Boot на порту `8080`
+* **postgres:** База данных PostgreSQL на порту `5432`
 
+3️⃣ Проверьте работу приложения:
 
-Проверьте, что приложение работает:
+* Swagger UI: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
+4️⃣ Логи:
 
-Откройте Swagger UI: http://localhost:8080/swagger-ui.html
-Проверьте логи:
-
+```bash
 docker-compose logs web-rise
 docker-compose logs postgres
+```
 
+5️⃣ Остановка приложения:
 
-Остановка приложения:
-
+```bash
 docker-compose down
+```
 
-Локальная разработка (без Docker)
+## Локальная разработка (без Docker)
 
-Убедитесь, что PostgreSQL запущен локально или в Docker:
+1️⃣ Запустите PostgreSQL локально или через Docker:
 
-docker run -d --name postgres -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=daster -e POSTGRES_DB=usersubscriptions postgres:17.5
+```bash
+docker run -d --name postgres -p 5432:5432 \
+    -e POSTGRES_USER=postgres \
+    -e POSTGRES_PASSWORD=daster \
+    -e POSTGRES_DB=usersubscriptions \
+    postgres:17.5
+```
 
+2️⃣ Обновите `application.yml` для локального подключения:
 
-Обновите application.yml для локального подключения:
-
+```yaml
 spring:
   r2dbc:
     url: r2dbc:postgresql://localhost:5432/usersubscriptions
     username: postgres
     password: daster
+```
 
+3️⃣ Соберите и запустите приложение:
 
-Соберите и запустите приложение:
-
+```bash
 mvn clean install
 mvn spring-boot:run
+```
 
-Использование API
-API документировано через Swagger UI, доступно по адресу: http://localhost:8080/swagger-ui.html.
-Основные эндпоинты
-Пользователи
+## Использование API
 
-POST /users — Создать пользователя{
+Swagger UI: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+
+### Основные эндпоинты
+
+#### Пользователи
+
+* `POST /users` — Создать пользователя
+
+```json
+{
   "name": "John Doe",
   "email": "john.doe@example.com"
 }
+```
 
+* `GET /users/{id}` — Получить пользователя по ID
+* `PUT /users/{id}` — Обновить пользователя
+* `DELETE /users/{id}` — Удалить пользователя
 
-GET /users/{id} — Получить пользователя по ID
-PUT /users/{id} — Обновить пользователя
-DELETE /users/{id} — Удалить пользователя
+#### Подписки
 
-Подписки
+* `POST /users/{userId}/subscriptions` — Добавить подписку
 
-POST /users/{userId}/subscriptions — Добавить подписку{
+```json
+{
   "serviceName": "YouTube"
 }
+```
 
+* `GET /users/{userId}/subscriptions` — Получить подписки пользователя
+* `DELETE /users/{userId}/subscriptions/{subscriptionId}` — Удалить подписку
 
-GET /users/{userId}/subscriptions — Получить подписки пользователя
-DELETE /users/{userId}/subscriptions/{subscriptionId} — Удалить подписку
+#### Топ подписок
 
-Топ подписок
+* `GET /subscriptions/top` — Получить топ-5 популярных сервисов
 
-GET /subscriptions/top — Получить топ-5 популярных сервисов[
+```json
+[
   {
     "serviceName": "YouTube",
     "count": 3
@@ -138,16 +181,25 @@ GET /subscriptions/top — Получить топ-5 популярных сер
     "count": 2
   }
 ]
+```
 
+## Тестирование
 
+Используйте Swagger UI или такие инструменты, как `curl` или Postman.
 
-Тестирование
-Для тестирования используйте Swagger UI или инструменты, такие как curl или Postman. Пример запроса:
+Пример запроса с `curl`:
+
+```bash
 curl -X POST http://localhost:8080/users \
--H "Content-Type: application/json" \
--d '{"name":"John Doe","email":"john.doe@example.com"}'
+     -H "Content-Type: application/json" \
+     -d '{"name":"John Doe","email":"john.doe@example.com"}'
+```
 
-Для написания автоматических тестов добавьте зависимости в pom.xml:
+### Автоматические тесты
+
+Для написания тестов добавьте зависимости в `pom.xml`:
+
+```xml
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-test</artifactId>
@@ -158,14 +210,16 @@ curl -X POST http://localhost:8080/users \
     <artifactId>reactor-test</artifactId>
     <scope>test</scope>
 </dependency>
+```
 
+Включить подробное логирование R2DBC:
 
+```yaml
 logging:
   level:
     org.springframework.data.r2dbc: TRACE
+```
 
+## Лицензия
 
-
-
-Лицензия
 MIT License
